@@ -1,6 +1,4 @@
-# Welcome to GitHub Desktop!
-
-This is your README. READMEs are where you can communicate what your project is and how to use it.
-
-Write your name on line 6, save it, and then head back to GitHub Desktop.
+RestAPI PHP Native
+Digunakan untuk menyelesaikan UTS Web Servis Semester 5
+Create, Read, Update dan Delete
 Fajar Kurniawan
