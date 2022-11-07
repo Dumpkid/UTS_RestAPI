@@ -1,0 +1,260 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "RestAPI Bukuinduk",
+        "description": "Dokumentasi restAPI Buku Induk",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost/bukuinduk/restapi"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Buku",
+            "description": "Data buku"
+        }
+    ],
+    "paths": {
+        "/buku.php": 
+        {
+            "get": 
+            {
+                "tags": 
+                [
+                    "Buku"
+                ],
+                "summary": "Menampilkan data semua buku",
+                "responses": 
+                {
+                    "200": 
+                    {
+                        "description": "Request berhasil"
+                    }
+                }
+            },
+            "post": 
+            {
+                "tags": 
+                [
+                    "Buku"
+                ],
+                "summary": "Menambah data buku baru",
+                "requestBody":
+                {
+                    "content":
+                    {
+                        "application/x-www-form-urlencoded" :
+                        {
+                            "schema" : {
+                                "required" : ["judul","pengarang","tempat_terbit","penerbit","tahun_terbit","edisi","jumlah_buku","halaman","jenis_buku","isbn","sumber","harga","keterangan"],
+                                "type" : "object",
+                                "properties" : {
+                                    "judul" : {
+                                        "type" : "string",
+                                        "example" : "Judul buku A"
+                                    },
+                                    "pengarang" : {
+                                        "type" : "string",
+                                        "example" : "Fajar Kurniawan"
+                                    },
+                                    "tempat_terbit" : {
+                                        "type" : "string",
+                                        "example" : "Semarang"
+                                    },
+                                    "penerbit" : {
+                                        "type" : "string",
+                                        "example" : "Gramedia"
+                                    },
+                                    "tahun_terbit" : {
+                                        "type" : "integer",
+                                        "example" : "2020"
+                                    },
+                                    "edisi" : {
+                                        "type" : "string",
+                                        "example" : "pertama"
+                                    },
+                                    "jumlah_buku" : {
+                                        "type" : "integer",
+                                        "example" : "200"
+                                    },
+                                    "isbn" : {
+                                        "type" : "string",
+                                        "example" : "123-456-78-90"
+                                    },
+                                    "sumber" : {
+                                        "type" : "string",
+                                        "example" : "pembelian"
+                                    },
+                                    "harga" : {
+                                        "type" : "integer",
+                                        "example" : "200000"
+                                    },
+                                    "keterangan" : {
+                                        "type" : "string",
+                                        "example" : "kondisi baik"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": 
+                {
+                    "200": 
+                    {
+                        "description": "Request berhasil"
+                    },
+                    "400": 
+                    {
+                        "description": "Parameter tidak sesuai"
+                    }
+                }
+            }
+        },
+        "/buku.php?id={id_buku}": 
+        {
+            "get": 
+            {
+                "tags": 
+                [
+                    "Buku"
+                ],
+                "summary": "Menampilkan data buku berdasarkan id_buku",
+                "parameters" : [
+                    {
+                        "name" : "id_buku",
+                        "in" : "path",
+                        "description" : "id data buku",
+                        "required" : true,
+                        "schema" : {
+                            "type" : "integer",
+                            "format" : "int64"
+                        }
+                    }
+                ],
+                "responses": 
+                {
+                    "200": 
+                    {
+                        "description": "Request berhasil"
+                    },
+                    "404": 
+                    {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            },
+            "post": 
+            {
+                "tags": 
+                [
+                    "Buku"
+                ],
+                "summary": "Mengupdate data buku berdasarkan id_buku",
+                "requestBody":
+                {
+                    "content":
+                    {
+                        "application/x-www-form-urlencoded" :
+                        {
+                            "schema" : {
+                                "required" : ["judul","pengarang","tempat_terbit","penerbit","tahun_terbit","edisi","jumlah_buku","halaman","jenis_buku","isbn","sumber","harga","keterangan"],
+                                "type" : "object",
+                                "properties" : {
+                                    "judul" : {
+                                        "type" : "string",
+                                        "example" : "Judul buku A"
+                                    },
+                                    "pengarang" : {
+                                        "type" : "string",
+                                        "example" : "Fajar Kurniawan"
+                                    },
+                                    "tempat_terbit" : {
+                                        "type" : "string",
+                                        "example" : "Semarang"
+                                    },
+                                    "penerbit" : {
+                                        "type" : "string",
+                                        "example" : "Gramedia"
+                                    },
+                                    "tahun_terbit" : {
+                                        "type" : "integer",
+                                        "example" : "2020"
+                                    },
+                                    "edisi" : {
+                                        "type" : "string",
+                                        "example" : "pertama"
+                                    },
+                                    "jumlah_buku" : {
+                                        "type" : "integer",
+                                        "example" : "200"
+                                    },
+                                    "isbn" : {
+                                        "type" : "string",
+                                        "example" : "123-456-78-90"
+                                    },
+                                    "sumber" : {
+                                        "type" : "string",
+                                        "example" : "pembelian"
+                                    },
+                                    "harga" : {
+                                        "type" : "integer",
+                                        "example" : "200000"
+                                    },
+                                    "keterangan" : {
+                                        "type" : "string",
+                                        "example" : "kondisi baik"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": 
+                {
+                    "200": 
+                    {
+                        "description": "Request berhasil"
+                    },
+                    "400": 
+                    {
+                        "description": "Parameter tidak sesuai"
+                    }
+                }
+            },
+            "delete": 
+            {
+                "tags": 
+                [
+                    "Buku"
+                ],
+                "summary": "Mengahpus data buku berdasarkan id_buku",
+                "parameters" : [
+                    {
+                        "name" : "id_buku",
+                        "in" : "path",
+                        "description" : "id data buku",
+                        "required" : true,
+                        "schema" : {
+                            "type" : "integer",
+                            "format" : "int64"
+                        }
+                    }
+                ],
+                "responses": 
+                {
+                    "200": 
+                    {
+                        "description": "Request berhasil"
+                    },
+                    "404": 
+                    {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            }
+        }
+    }
+}

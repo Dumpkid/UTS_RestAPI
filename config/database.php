@@ -2,7 +2,7 @@
     $host = 'localhost';
     $user = 'root';
     $pswd = '';
-    $dbname = 'bukuinduk';
+    $dbname = 'inv_buku';
 
     $conn = mysqli_connect($host, $user, $pswd, $dbname);
     if(!$conn){

@@ -67,6 +67,7 @@
                 'jumlah_buku' => '',
                 'halaman' => '',
                 // 'tanggal_masuk' => '',
+                
                 'jenis_buku' => '',
                 'isbn' => '',
                 'sumber' => '',
@@ -76,6 +77,7 @@
             $hitung = count(array_intersect_key($_POST, $arrcheckpost));
 
             if($hitung == count($arrcheckpost)){
+                $dateNow = date("Y-m-d H:i:s");
                 $result = mysqli_query($conn, "INSERT INTO databuku SET
                 judul ='$_POST[judul]',
                 pengarang = '$_POST[pengarang]',
@@ -85,7 +87,7 @@
                 edisi = '$_POST[edisi]',
                 jumlah_buku = '$_POST[jumlah_buku]',
                 halaman = '$_POST[halaman]',
-                -- tanggal_masuk = '$_POST[tanggal_masuk]',
+                tanggal_masuk = '$dateNow',
                 jenis_buku = '$_POST[jenis_buku]',
                 isbn = '$_POST[isbn]',
                 sumber = '$_POST[sumber]',
@@ -132,7 +134,7 @@
                 'edisi' => '',
                 'jumlah_buku' => '',
                 'halaman' => '',
-                'tanggal_masuk' => '',
+                // 'tanggal_masuk' => '',
                 'jenis_buku' => '',
                 'isbn' => '',
                 'sumber' => '',
@@ -142,6 +144,7 @@
             $hitung = count(array_intersect_key($_POST, $arrcheckpost));
             
             if($hitung == count($arrcheckpost)){
+                $dateNow = date("Y-m-d H:i:s");
                 $result = mysqli_query($conn, "UPDATE databuku SET
                 judul = '$_POST[judul]',
                 pengarang = '$_POST[pengarang]',
@@ -151,7 +154,7 @@
                 edisi = '$_POST[edisi]',
                 jumlah_buku = '$_POST[jumlah_buku]',
                 halaman = '$_POST[halaman]',
-                tanggal_masuk = '$_POST[tanggal_masuk]',
+                tanggal_masuk = '$dateNow',
                 jenis_buku = '$_POST[jenis_buku]',
                 isbn = '$_POST[isbn]',
                 sumber = '$_POST[sumber]',
@@ -182,6 +185,53 @@
                 http_response_code(400);
                 
             }
+            // Request berupa JSON file
+            // $post_var = json_decode(file_get_contents("php://input"),true);
+            // $judul = $post_var["judul"];
+            // $pengarang = $post_var["pengarang"];
+            // $tempat_terbit = $post_var["tempat_terbit"];
+            // $penerbit = $post_var["penerbit"];
+            // $tahun_terbit = $post_var["tahun_terbit"];
+            // $edisi = $post_var["edisi"];
+            // $jumlah_buku = $post_var["jumlah_buku"];
+            // $halaman = $post_var["halaman"];
+            // $tanggal_masuk = $post_var["tanggal_masuk"];
+            // $jenis_buku = $post_var["jenis_buku"];
+            // $isbn = $post_var["isbn"];
+            // $sumber = $post_var["sumber"];
+            // $harga = $post_var["harga"];
+            // $keterangan = $post_var["keterangan"];
+            
+            // $query = "UPDATE databuku SET judul='".$judul."',
+            // pengarang='".$pengarang."',
+            // tempat_terbit= '".$tempat_terbit."',
+            // penerbit= '".$penerbit."',
+            // tahun_terbit= '".$tahun_terbit."',
+            // edisi= '".$edisi."',
+            // jumlah_buku= '".$jumlah_buku."',
+            // halaman= '".$halaman."',
+            // harga= '".$harga."',
+            // tanggal_masuk= '".$tanggal_masuk."',
+            // jenis_buku= '".$jenis_buku."',
+            // isbn= '".$isbn."',
+            // sumber= '".$sumber."',
+            // harga= '".$harga."',
+            // keterangan= '".$keterangan."'
+            // WHERE id_buku =".$id;
+            
+            // if(mysqli_query($conn, $query)){
+            //     $response = array(
+            //         'status' => true,
+            //         'message' => 'Update Data Success'
+            //     );
+            //     http_response_code(201);
+            // }else {
+            //     $response = array(
+            //         'status' => false,
+            //         'message' => 'Update Data Failed'
+            //     );
+            //     die(mysqli_error($conn,$query));
+            // }
             echo json_encode($response);
         }
 
