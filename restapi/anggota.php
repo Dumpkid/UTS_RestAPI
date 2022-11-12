@@ -1,27 +1,27 @@
 <?php
-    require_once "../method/mBuku.php";
-    $buku = new Buku();
+    require_once "../method/mAnggota.php";
+    $anggota = new Anggota();
     $request_method = $_SERVER['REQUEST_METHOD'];
     switch ($request_method) {
         case 'GET':
             if(!empty($_GET['id'])){
                 $id = intval($_GET['id']);
-                $buku->getBukuId($id);
+                $anggota->getAnggotaId($id);
             }else{
-                $buku->getBuku();
+                $anggota->getAnggota();
             }
             break;
         case 'POST':
             if(!empty($_GET['id'])){
                 $id = intval($_GET['id']);
-                $buku->updateBuku($id);
+                $anggota->updateAnggota($id);
             }else{
-                $buku->insertBuku();
+                $anggota->insertAnggota();
             }
             break;
         case 'DELETE':
             $id = intval($_GET['id']);
-            $buku->deleteBuku($id);
+            $anggota->deleteAnggota($id);
             break;
         default:
             header('HTTP/1.1 405 Method Not Allowed');

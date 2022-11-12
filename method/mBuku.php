@@ -10,15 +10,24 @@
 
             global $conn;
             $query = $conn->query("SELECT * FROM databuku");
-            while($row = mysqli_fetch_object($query)){
-                $data[] = $row;
+            $check = mysqli_num_rows($query);
+            if($check == 0){
+                $response = array(
+                    'status' => true,
+                    'message' => 'Data Buku Kosong'
+                );
+                http_response_code(204);
+            }else{
+                while($row = mysqli_fetch_object($query)){
+                    $data[] = $row;
+                }
+                $response = array(
+                    'status' => true,
+                    'message' => 'Get Data Success',
+                    'data' => $data
+                );
+                http_response_code(200);
             }
-            $response = array(
-                'status' => true,
-                'message' => 'Get Data Success',
-                'data' => $data
-            );
-            http_response_code(200);
             echo json_encode($response);
         }
         
@@ -48,7 +57,7 @@
             }else{
                 $response = array(
                     'status' => false,
-                    'message' => 'Tidak tidak ditemukan'
+                    'message' => 'Data tidak ditemukan'
                 );
                 http_response_code(404);
             }
@@ -110,7 +119,7 @@
             }else{
                 $response = array(
                     'status' => false,
-                    'message' => 'Parametes Do Not Match'
+                    'message' => 'Parameter Do Not Match'
                 );
                 http_response_code(400);
             }
@@ -256,4 +265,5 @@
             echo json_encode($response);
         }
     }
+
 ?>

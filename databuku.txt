@@ -1,3 +1,0 @@
-"id_buku"	"judul"	"pengarang"	"tempat_terbit"	"penerbit"	"tahun_terbit"	"edisi"	"jumlah_buku"	"halaman"	"tanggal_masuk"	"jenis_buku"	"isbn"	"sumber"	"harga"	"keterangan"
-"1"	"Inspirasi Pemimpin"	"Thomas Kristo"	"Jakarta"	"Elex Media Komputindo"	"2012"	"pertama"	"50"	"186"	"3/11/2022 15:26:00"	"inspirasi"	"978-602-02-0003-3"	"pembelian"	"100000"	"kondisi baik"
-"2"	"Mesin waktu : pesan dari masa depan"	"Ahmad M. Mabrur Umar"	"Sukabumi"	"CV Jejak"	"2021"	"pertama"	"20"	"236"	"4/11/2022 01:38:21"	"novel"	"978-623-247-945-6"	"pembelian"	"100000"	"kondisi baik"
