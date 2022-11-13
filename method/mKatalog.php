@@ -72,7 +72,7 @@ class Katalog{
             'judul' => '',
             'pengarang' => '',
             'jenis_buku' => '',
-            'sts_buku' => '',
+            'status_pinjam' => '',
         );
         
         $hitung = count(array_intersect_key($_POST, $arrcheckpost));
@@ -81,7 +81,7 @@ class Katalog{
             judul ='$_POST[judul]',
             pengarang = '$_POST[pengarang]',
             jenis_buku = '$_POST[jenis_buku]',
-            sts_buku = '$_POST[sts_buku]'
+            status_pinjam = '$_POST[status_pinjam]'
             ");
     
             if($result){
@@ -99,7 +99,7 @@ class Katalog{
         }else{
             $response = array(
                 'status' => false,
-                'message' => 'Parametes Do Not Match'
+                'message' => 'Parameter Do Not Match'
             );
             http_response_code(400);
         }
@@ -118,7 +118,7 @@ class Katalog{
             'judul' => '',
             'pengarang' => '',
             'jenis_buku' => '',
-            'sts_buku' => '',
+            'status_pinjam' => '',
         );
         $hitung = count(array_intersect_key($_POST, $arrcheckpost));
         
@@ -127,7 +127,7 @@ class Katalog{
             judul ='$_POST[judul]',
             pengarang = '$_POST[pengarang]',
             jenis_buku = '$_POST[jenis_buku]',
-            sts_buku = '$_POST[sts_buku]',
+            status_pinjam = '$_POST[status_pinjam]'
             WHERE id_katalog ='$id'
             ");
     

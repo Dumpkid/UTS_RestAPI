@@ -2,21 +2,21 @@
 
 require_once "../config/database.php";
 
-class Anggota{
+class Pinjam{
 
-    function getAnggota(){
+    function getPinjam(){
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
         header("Access-Control-Allow-Methods: GET");
         header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
     
         global $conn;
-        $query = $conn->query("SELECT * FROM dataanggota");
+        $query = $conn->query("SELECT * FROM datapinjam");
         $check = mysqli_num_rows($query);
         if($check == 0){
             $response = array(
                 'status' => true,
-                'message' => 'Data Anggota Kosong'
+                'message' => 'Data Pinjam Kosong'
             );
             http_response_code(204);
         }else{
@@ -33,16 +33,16 @@ class Anggota{
         echo json_encode($response);
     }
     
-    function getAnggotaId($id=0){
+    function getPinjamId($id=0){
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
         header("Access-Control-Allow-Methods: GET");
         header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
     
         global $conn;
-        $query = "SELECT * FROM dataanggota";
+        $query = "SELECT * FROM datapinjam";
         if($id !=0){
-            $query .=" WHERE id_anggota = ".$id." LIMIT 1";
+            $query .=" WHERE id_pinjam = ".$id." LIMIT 1";
         }
         $data = array();
         $result = $conn->query($query);
@@ -66,34 +66,31 @@ class Anggota{
         echo json_encode($response);
     }
     
-    public function insertAnggota(){
+    public function insertPinjam(){
         global $conn;
         $arrcheckpost = array(
+            'pinjam_id' => '',
             'anggota_id' => '',
-            'nama' => '',
-            'tanggal_lahir' => '',
-            'jenis_kelamin' => '',
-            'alamat' => '',
-            'email' => '',
-            'telpon' => '',
-            'username' => '',
-            'password' => '',
+            'buku_id' => '',
+            'tanggal_pinjam' => '',
+            'lama_pinjam' => '',
+            'tanggal_kembali' => '',
+            'denda_id' => '',
+            'status_pinjam' => '',
         );
         
         $hitung = count(array_intersect_key($_POST, $arrcheckpost));
         if($hitung == count($arrcheckpost)){
-            $result = mysqli_query($conn, "INSERT INTO dataanggota SET
+            $result = mysqli_query($conn, "INSERT INTO datapinjam SET
+            pinjam_id ='$_POST[pinjam_id]',
             anggota_id ='$_POST[anggota_id]',
-            nama ='$_POST[nama]',
-            tanggal_lahir = '$_POST[tanggal_lahir]',
-            jenis_kelamin = '$_POST[jenis_kelamin]',
-            alamat = '$_POST[alamat]',
-            email = '$_POST[email]',
-            telpon = '$_POST[telpon]',
-            username = '$_POST[username]',
-            passwd = '$_POST[password]'
+            buku_id = '$_POST[buku_id]',
+            tanggal_pinjam = '$_POST[tanggal_pinjam]',
+            lama_pinjam = '$_POST[lama_pinjam]',
+            tanggal_kembali = '$_POST[tanggal_kembali]',
+            denda_id = '$_POST[denda_id]',
+            status_pinjam = '$_POST[status_pinjam]'
             ");
-    
             if($result){
                 $response = array(
                     'status' => true,
@@ -109,7 +106,7 @@ class Anggota{
         }else{
             $response = array(
                 'status' => false,
-                'message' => 'Parametes Do Not Match'
+                'message' => 'Parameter Do Not Match'
             );
             http_response_code(400);
         }
@@ -117,7 +114,7 @@ class Anggota{
         echo json_encode($response);
     }
     
-    function updateAnggota($id){
+    function updatePinjam($id){
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
         header("Access-Control-Allow-Methods: POST");
@@ -125,30 +122,28 @@ class Anggota{
     
         global $conn;
         $arrcheckpost = array(
+            'pinjam_id' => '',
             'anggota_id' => '',
-            'nama' => '',
-            'tanggal_lahir' => '',
-            'jenis_kelamin' => '',
-            'alamat' => '',
-            'email' => '',
-            'telpon' => '',
-            'username' => '',
-            'password' => '',
+            'buku_id' => '',
+            'tanggal_pinjam' => '',
+            'lama_pinjam' => '',
+            'tanggal_kembali' => '',
+            'denda_id' => '',
+            'status_pinjam' => '',
         );
         $hitung = count(array_intersect_key($_POST, $arrcheckpost));
         
         if($hitung == count($arrcheckpost)){
-            $result = mysqli_query($conn, "UPDATE dataanggota SET
+            $result = mysqli_query($conn, "UPDATE datapinjam SET
+            pinjam_id ='$_POST[pinjam_id]',
             anggota_id ='$_POST[anggota_id]',
-            nama ='$_POST[nama]',
-            tanggal_lahir = '$_POST[tanggal_lahir]',
-            jenis_kelamin = '$_POST[jenis_kelamin]',
-            alamat = '$_POST[alamat]',
-            email = '$_POST[email]',
-            telpon = '$_POST[telpon]',
-            username = '$_POST[username]',
-            passwd = '$_POST[password]'
-            WHERE id_anggota ='$id'
+            buku_id = '$_POST[buku_id]',
+            tanggal_pinjam = '$_POST[tanggal_pinjam]',
+            lama_pinjam = '$_POST[lama_pinjam]',
+            tanggal_kembali = '$_POST[tanggal_kembali]',
+            denda_id = '$_POST[denda_id]',
+            status_pinjam = '$_POST[status_pinjam]'
+            WHERE id_pinjam ='$id'
             ");
     
             if($result){
@@ -176,10 +171,10 @@ class Anggota{
         echo json_encode($response);
     }
     
-    function deleteAnggota($id){
+    function deletePinjam($id){
     
         global $conn;
-        $query = "DELETE FROM dataanggota WHERE id_anggota =".$id;
+        $query = "DELETE FROM datapinjam WHERE id_pinjam =".$id;
         if(mysqli_query($conn, $query)){
             $response = array(
                 'status' => true,

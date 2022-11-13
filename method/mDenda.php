@@ -2,21 +2,21 @@
 
 require_once "../config/database.php";
 
-class Anggota{
+class Denda{
 
-    function getAnggota(){
+    function getDenda(){
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
         header("Access-Control-Allow-Methods: GET");
         header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
     
         global $conn;
-        $query = $conn->query("SELECT * FROM dataanggota");
+        $query = $conn->query("SELECT * FROM datadenda");
         $check = mysqli_num_rows($query);
         if($check == 0){
             $response = array(
                 'status' => true,
-                'message' => 'Data Anggota Kosong'
+                'message' => 'Data Denda Kosong'
             );
             http_response_code(204);
         }else{
@@ -33,16 +33,16 @@ class Anggota{
         echo json_encode($response);
     }
     
-    function getAnggotaId($id=0){
+    function getDendaId($id=0){
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
         header("Access-Control-Allow-Methods: GET");
         header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
     
         global $conn;
-        $query = "SELECT * FROM dataanggota";
+        $query = "SELECT * FROM datadenda";
         if($id !=0){
-            $query .=" WHERE id_anggota = ".$id." LIMIT 1";
+            $query .=" WHERE id_denda = ".$id." LIMIT 1";
         }
         $data = array();
         $result = $conn->query($query);
@@ -66,34 +66,21 @@ class Anggota{
         echo json_encode($response);
     }
     
-    public function insertAnggota(){
+    public function insertDenda(){
         global $conn;
         $arrcheckpost = array(
-            'anggota_id' => '',
-            'nama' => '',
-            'tanggal_lahir' => '',
-            'jenis_kelamin' => '',
-            'alamat' => '',
-            'email' => '',
-            'telpon' => '',
-            'username' => '',
-            'password' => '',
+            'pinjam_id' => '',
+            'denda' => '',
+            'lama_terlambat' => '',
         );
         
         $hitung = count(array_intersect_key($_POST, $arrcheckpost));
         if($hitung == count($arrcheckpost)){
-            $result = mysqli_query($conn, "INSERT INTO dataanggota SET
-            anggota_id ='$_POST[anggota_id]',
-            nama ='$_POST[nama]',
-            tanggal_lahir = '$_POST[tanggal_lahir]',
-            jenis_kelamin = '$_POST[jenis_kelamin]',
-            alamat = '$_POST[alamat]',
-            email = '$_POST[email]',
-            telpon = '$_POST[telpon]',
-            username = '$_POST[username]',
-            passwd = '$_POST[password]'
+            $result = mysqli_query($conn, "INSERT INTO datadenda SET
+            pinjam_id ='$_POST[pinjam_id]',
+            denda ='$_POST[denda]',
+            lama_terlambat = '$_POST[lama_terlambat]'
             ");
-    
             if($result){
                 $response = array(
                     'status' => true,
@@ -109,7 +96,7 @@ class Anggota{
         }else{
             $response = array(
                 'status' => false,
-                'message' => 'Parametes Do Not Match'
+                'message' => 'Parameter Do Not Match'
             );
             http_response_code(400);
         }
@@ -117,7 +104,7 @@ class Anggota{
         echo json_encode($response);
     }
     
-    function updateAnggota($id){
+    function updateDenda($id){
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
         header("Access-Control-Allow-Methods: POST");
@@ -125,30 +112,18 @@ class Anggota{
     
         global $conn;
         $arrcheckpost = array(
-            'anggota_id' => '',
-            'nama' => '',
-            'tanggal_lahir' => '',
-            'jenis_kelamin' => '',
-            'alamat' => '',
-            'email' => '',
-            'telpon' => '',
-            'username' => '',
-            'password' => '',
+            'pinjam_id' => '',
+            'denda' => '',
+            'lama_terlambat' => '',
         );
         $hitung = count(array_intersect_key($_POST, $arrcheckpost));
         
         if($hitung == count($arrcheckpost)){
-            $result = mysqli_query($conn, "UPDATE dataanggota SET
-            anggota_id ='$_POST[anggota_id]',
-            nama ='$_POST[nama]',
-            tanggal_lahir = '$_POST[tanggal_lahir]',
-            jenis_kelamin = '$_POST[jenis_kelamin]',
-            alamat = '$_POST[alamat]',
-            email = '$_POST[email]',
-            telpon = '$_POST[telpon]',
-            username = '$_POST[username]',
-            passwd = '$_POST[password]'
-            WHERE id_anggota ='$id'
+            $result = mysqli_query($conn, "UPDATE datadenda SET
+            pinjam_id ='$_POST[pinjam_id]',
+            denda ='$_POST[denda]',
+            lama_terlambat = '$_POST[lama_terlambat]'
+            WHERE id_denda ='$id'
             ");
     
             if($result){
@@ -176,10 +151,10 @@ class Anggota{
         echo json_encode($response);
     }
     
-    function deleteAnggota($id){
+    function deleteDenda($id){
     
         global $conn;
-        $query = "DELETE FROM dataanggota WHERE id_anggota =".$id;
+        $query = "DELETE FROM datadenda WHERE id_denda =".$id;
         if(mysqli_query($conn, $query)){
             $response = array(
                 'status' => true,

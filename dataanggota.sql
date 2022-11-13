@@ -1,2 +1,0 @@
-INSERT INTO `dataanggota` (`id_anggota`, `nama`, `tanggal_lahir`, `jenis_kelamin`, `alamat`, `email`, `telpon`, `username`, `passwd`) VALUES (1, 'Vincent Budi', '1999-02-21', 'Laki-laki', 'Bandung', 'VincentBudi@gmail.com', 812345667, 'vincentb', 'budi123');
-INSERT INTO `dataanggota` (`id_anggota`, `nama`, `tanggal_lahir`, `jenis_kelamin`, `alamat`, `email`, `telpon`, `username`, `passwd`) VALUES (3, 'Tiny Upi', '2001-09-17', 'Perempuan', 'Bogor', 'teanee@gmail.com', 2147483647, 'tinyupi', 'ipuynit');

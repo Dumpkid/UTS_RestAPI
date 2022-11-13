@@ -67,6 +67,7 @@
         public function insertBuku(){
             global $conn;
             $arrcheckpost = array(
+                'buku_id' => '',
                 'judul' => '',
                 'pengarang' => '',
                 'tempat_terbit' => '',
@@ -75,19 +76,20 @@
                 'edisi' => '',
                 'jumlah_buku' => '',
                 'halaman' => '',
-                // 'tanggal_masuk' => '',
-                
-                'jenis_buku' => '',
+                'tanggal_masuk' => '',
+                'id_jenis_buku' => '',
                 'isbn' => '',
                 'sumber' => '',
+                'id_rak' => '',
                 'harga' => '',
-                'keterangan' => ''
+                'keterangan' => '',
             );
             $hitung = count(array_intersect_key($_POST, $arrcheckpost));
 
             if($hitung == count($arrcheckpost)){
-                $dateNow = date("Y-m-d H:i:s");
+                // $dateNow = date("Y-m-d");
                 $result = mysqli_query($conn, "INSERT INTO databuku SET
+                buku_id ='$_POST[buku_id]',
                 judul ='$_POST[judul]',
                 pengarang = '$_POST[pengarang]',
                 tempat_terbit = '$_POST[tempat_terbit]',
@@ -96,10 +98,11 @@
                 edisi = '$_POST[edisi]',
                 jumlah_buku = '$_POST[jumlah_buku]',
                 halaman = '$_POST[halaman]',
-                tanggal_masuk = '$dateNow',
-                jenis_buku = '$_POST[jenis_buku]',
+                tanggal_masuk = '$_POST[tanggal_masuk]',
+                id_jenis_buku = '$_POST[id_jenis_buku]',
                 isbn = '$_POST[isbn]',
                 sumber = '$_POST[sumber]',
+                id_rak = '$_POST[id_rak]',
                 harga = '$_POST[harga]',
                 keterangan = '$_POST[keterangan]'
                 ");
@@ -135,6 +138,7 @@
 
             global $conn;
             $arrcheckpost = array(
+                'buku_id' => '',
                 'judul' => '',
                 'pengarang' => '',
                 'tempat_terbit' => '',
@@ -143,10 +147,11 @@
                 'edisi' => '',
                 'jumlah_buku' => '',
                 'halaman' => '',
-                // 'tanggal_masuk' => '',
-                'jenis_buku' => '',
+                'tanggal_masuk' => '',
+                'id_jenis_buku' => '',
                 'isbn' => '',
                 'sumber' => '',
+                'id_rak' => '',
                 'harga' => '',
                 'keterangan' => ''
             );
@@ -155,6 +160,7 @@
             if($hitung == count($arrcheckpost)){
                 $dateNow = date("Y-m-d H:i:s");
                 $result = mysqli_query($conn, "UPDATE databuku SET
+                buku_id = '$_POST[buku_id]',
                 judul = '$_POST[judul]',
                 pengarang = '$_POST[pengarang]',
                 tempat_terbit = '$_POST[tempat_terbit]',
@@ -164,9 +170,10 @@
                 jumlah_buku = '$_POST[jumlah_buku]',
                 halaman = '$_POST[halaman]',
                 tanggal_masuk = '$dateNow',
-                jenis_buku = '$_POST[jenis_buku]',
+                id_jenis_buku = '$_POST[id_jenis_buku]',
                 isbn = '$_POST[isbn]',
                 sumber = '$_POST[sumber]',
+                id_rak = '$_POST[id_rak]',
                 harga = '$_POST[harga]',
                 keterangan = '$_POST[keterangan]'
                 WHERE id_buku ='$id'
